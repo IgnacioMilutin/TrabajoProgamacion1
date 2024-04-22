@@ -6,10 +6,8 @@ from .prestamos import Prestamo as PrestamoResources
 from .prestamos import Prestamos as PrestamosResources
 from .notificacion import Notificacion as NotificacionResources
 from .sign_in import sign_in as SigninResources
-from .sign_in import log_in as LoginResources
-from .configuracion import Configuracion as ConfiguracionResources
-from .configuracion import Configuraciones as ConfiguracionesResources
-from .valoracion import Valoracion as ValoracionResources
-from .valoracion import Valoraciones as ValoracionesResources
-from .valoracion import Comentario as  ComentarioResources
-from .valoracion import Comentarios as ComentariosResources
+#from .sign_in import log_in as LoginResources
+from .valoracion import Resena as ResenaResources
+from .valoracion import Resenas as ResenasResources
+from .autor import Autor as AutorResources
+from .autor import Autores as AutoresResources

@@ -1,33 +1,26 @@
 from flask_restful import Resource
-from flask import request
+from flask import request, jsonify
+from main.models import ResenasModel
+from .. import db
 
 VALORACION={
     1:{'libro_id':'El Gato Negro','puntuacion':'4.5','comentario':'Muy bueno'}
 }
 
-class Valoracion(Resource):
-    def get(self,id):
-        if int(id) in VALORACION:
-            return VALORACION[int(id)]
-        return 'No existe el id', 404
-
-class Valoraciones(Resource):    
-    def post(self):
-            val=request.get_json()
-            id=int(max(VALORACION.keys()))+1
-            VALORACION[id]=val
-            return VALORACION[id],201
+class Resena(Resource):
+    def get(self,id_resena):
+        resena=db.session.query(ResenasModel).get_or_404(id_resena)
+        return resena.to_json()
     
-class Comentario(Resource):
-    def get(self,id):
-        if int(id) in VALORACION:
-            return VALORACION[int(id)]
-        return 'No existe el id', 404
+    def delete(self,id_resena):
+        resena=db.session.query(ResenasModel).get_or_404(id_resena)
+        db.session.delete(resena)
+        db.session.commit()
+        return 'reseña eliminada correctamente', 204
 
-
-class Comentarios(Resource):
+class Resenas(Resource):    
     def post(self):
-        val=request.get_json()
-        id=int(max(VALORACION.keys()))+1
-        VALORACION[id]=val
-        return VALORACION[id],201
+        resena=ResenasModel.from_json(request.get_json())
+        db.session.add(resena)
+        db.session.commit()
+        return resena.to_json(), 201

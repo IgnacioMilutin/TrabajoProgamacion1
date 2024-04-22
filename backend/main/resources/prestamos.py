@@ -1,5 +1,7 @@
 from flask_restful import Resource
-from flask import request
+from flask import request, jsonify
+from main.models import PrestamoModel
+from .. import db
 
 PRESTAMOS={
     1:{'usuario_id':'1','libro':'El Gato Negro'},
@@ -7,30 +9,32 @@ PRESTAMOS={
 }
 
 class Prestamo(Resource):
-    def get(self,id):
-        if int(id) in PRESTAMOS:
-            return  PRESTAMOS[int(id)]
-        return 'No existe el id', 404
+    def get(self,id_prestamo):
+        prestamo=db.session.query(PrestamoModel).get_or_404(id_prestamo)
+        return prestamo.to_json()
     
-    def delete(self,id):
-        if int(id) in PRESTAMOS:
-            del PRESTAMOS[int(id)]
-            return '',204
-        return 'No existe el id',404
+    def delete(self,id_prestamo):
+        prestamo=db.session.query(PrestamoModel).get_or_404(id_prestamo)
+        db.session.delete(prestamo)
+        db.session.commit()
+        return 'prestamo eliminado correctamente', 204
     
-    def put(self,id):
-        if int(id) in PRESTAMOS:
-            prestamo=PRESTAMOS[int(id)]
-            data=request.get_json()
-            prestamo.update(data)
-            return '',201
-        return 'No existe el id',404
+    def put(self,id_prestamo):
+        prestamo=db.session.query(PrestamoModel).get_or_404(id_prestamo)
+        data=request.get_json().items()
+        for key, value in data:
+            setattr(prestamo,key,value)
+        db.session.add(prestamo)
+        db.session.commit()
+        return prestamo.to_json(), 201
+    
 
 class Prestamos(Resource):
     def get(self):
-        return PRESTAMOS
+        prestamos=db.session.query(PrestamoModel).all()
+        return jsonify([prestamo.to_json() for prestamo in prestamos])
     def post(self):
-        prestamo=request.get_json()
-        id=int(max(PRESTAMOS.keys()))+1
-        PRESTAMOS[id]=prestamo
-        return PRESTAMOS[id],201
+        prestamo=PrestamoModel.from_json(request.get_json())
+        db.session.add(prestamo)
+        db.session.commit()
+        return prestamo.to_json(), 201
