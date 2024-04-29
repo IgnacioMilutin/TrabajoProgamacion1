@@ -1,12 +1,8 @@
 from flask_restful import Resource
 from flask import request, jsonify
-from main.models import LibroModel
+from main.models import LibroModel, AutorModel, libros_autoresModel
 from .. import db
 
-LIBROS={
-    1:{'titulo':'El Gato Negro','autor':'Edgar Allan Poe','genero':'ficcion gotica'},
-    2:{'titulo':'Ficciones','autor':'Jorge Luis Borgees', 'genero':'literatura fantastica'}
-}
 class Libro(Resource):
     def get(self,id_libro):
         libro=db.session.query(LibroModel).get_or_404(id_libro)
@@ -32,7 +28,16 @@ class Libros(Resource):
         libros=db.session.query(LibroModel).all()
         return jsonify([libro.to_json() for libro in libros])
     def post(self):
-        libro=LibroModel.from_json(request.get_json())
+        librodata=request.get_json()
+        autores_ids=librodata.get('autores')
+        libro=LibroModel.from_json(librodata)
         db.session.add(libro)
         db.session.commit()
+        if autores_ids:
+            autores = AutorModel.query.filter(AutorModel.id_autor.in_(autores_ids)).all()
+            for autor in autores:
+                libro.autores.append(autor)
+        db.session.commit()
         return libro.to_json(), 201
+
+        

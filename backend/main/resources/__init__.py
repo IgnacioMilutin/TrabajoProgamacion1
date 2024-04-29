@@ -4,10 +4,15 @@ from .libro import Libro as LibroResources
 from .libro import Libros as LibrosResources
 from .prestamos import Prestamo as PrestamoResources
 from .prestamos import Prestamos as PrestamosResources
+from .prestamos import Prestamos_por_usuario as Prestamos_por_usuarioResources
+from .prestamos import Prestamos_por_libro as Prestamos_por_libroResources
 from .notificacion import Notificacion as NotificacionResources
+from .notificacion import Notificacion_por_usuario as Notificacion_por_usuarioResources
 from .sign_in import sign_in as SigninResources
 #from .sign_in import log_in as LoginResources
 from .valoracion import Resena as ResenaResources
 from .valoracion import Resenas as ResenasResources
+from .valoracion import Resenas_por_usuario as Resenas_por_usuarioResources
+from .valoracion import Resenas_por_libro as Resenas_por_libroResources
 from .autor import Autor as AutorResources
 from .autor import Autores as AutoresResources

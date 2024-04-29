@@ -2,10 +2,13 @@ from .. import db
 
 class Resenas(db.Model):
     id_resena=db.Column(db.Integer,primary_key=True)
-    id_libro=db.Column(db.Integer, nullable=False)
-    id_usuario=db.Column(db.Integer, nullable=False)
+    id_libro=db.Column(db.Integer,db.ForeignKey("libro.id_libro"), nullable=False)
+    id_usuario=db.Column(db.Integer,db.ForeignKey("usuario.id_usuario"), nullable=False)
     valoracion=db.Column(db.Float, nullable=False)
     comentario=db.Column(db.String, nullable=True)
+    #Relaciones
+    usuario=db.relationship('Usuario',back_populates='resena')
+    libro=db.relationship('Libro',back_populates='resena')
 
     def to_json(self):
         resenas_json={
