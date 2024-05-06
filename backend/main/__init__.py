@@ -3,11 +3,13 @@ from dotenv import load_dotenv
 from flask_restful import Api
 import os
 from flask_sqlalchemy import SQLAlchemy
-
+#from flask_migrate import Migrate
+from flask_jwt_extended import JWTManager
 
 api=Api()
 db=SQLAlchemy()
-
+#migrate.Migrate()
+jwt=JWTManager()
 
 def create_app():
     app=Flask(__name__)
@@ -26,19 +28,23 @@ def create_app():
     api.add_resource(resources.UsuarioResources,'/usuario/<id_usuario>')
     api.add_resource(resources.LibrosResources,'/libros')
     api.add_resource(resources.LibroResources,'/libro/<id_libro>')
-    api.add_resource(resources.SigninResources,'/signin')
+    #.add_resource(resources.SigninResources,'/signin')
     #api.add_resource(resources.LoginResources,'/login/<nombre>/<contrasena>')
     api.add_resource(resources.PrestamoResources,'/prestamo/<id_prestamo>')
     api.add_resource(resources.PrestamosResources,'/prestamos')
-    api.add_resource(resources.Prestamos_por_usuarioResources,'/prestamos_usuario/<id_usuario>')
-    api.add_resource(resources.Prestamos_por_libroResources,'/prestamos_libro/<id_libro>')
     api.add_resource(resources.NotificacionResources,'/notificacion')
-    api.add_resource(resources.Notificacion_por_usuarioResources,'/notificacion_usuario/<id_usuario>')
     api.add_resource(resources.ResenaResources,'/resena/<id_resena>')
     api.add_resource(resources.ResenasResources,'/resenas')
-    api.add_resource(resources.Resenas_por_usuarioResources,'/resenas_usuario/<id_usuario>')
-    api.add_resource(resources.Resenas_por_libroResources,'/resenas_libro/<id_libro>')
     api.add_resource(resources.AutorResources,'/autor/<id_autor>')
     api.add_resource(resources.AutoresResources,'/autores')
     api.init_app(app)
+
+    app.config['JWT_SECRET_KEY']=os.getenv('JWT_SECRET_KEY')
+    app.config['JWT_ACCESS_TOKEN_EXPIRES']=int(os.getenv('JWT_ACCESS_TOKEN_EXPIRES'))
+    jwt.init_app(app)
+    from main.auth import routes
+    app.register_blueprint(routes.auth)
+
     return app
+
+
