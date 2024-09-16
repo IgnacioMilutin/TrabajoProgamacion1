@@ -20,7 +20,7 @@
     <nav class="navbar navbar-expand-lg" style="background-color: #97c4e4">
       <div class="container-fluid">
         <a class="navbar-brand active" href="index.html">
-          <i class="fa-solid fa-book"></i> Biblioteca
+          <i class="fa-solid fa-book-open"></i> Biblioteca
         </a>
         <button
           class="navbar-toggler"
@@ -43,6 +43,12 @@
             <li class="nav-item">
               <a class="nav-link" href="usuarios.html">Usuarios</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="libros.html">Libros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="reseña.html">Reseñas</a>
+            </li>
           </ul>
           <form class="d-flex">
             <a class="nav-link" href="./login.html">
@@ -56,7 +62,7 @@
     <div class="container-flex content background-image">
       <div class="row">
         <div class="col-md-8 offset-md-2">
-          <h2 class="text-center mb-4">Lista de Prestamos</h2>
+          <h2 class="text-center mb-4 title-box">Lista de Prestamos</h2>
           <div class="d-flex mb-3">
             <input
               type="text"
@@ -114,13 +120,11 @@
                 </button>
               </div>
             </li>
-            <!-- Agrega más Planificacións aquí -->
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- Modal para agregar nuevo Planificación -->
     <div
       class="modal fade"
       id="nuevoPrestamoModal"
@@ -142,7 +146,6 @@
             ></button>
           </div>
           <div class="modal-body">
-            <!-- Formulario para cargar un nuevo Planificación -->
             <form>
               <div class="mb-3">
                 <label for="nombre" class="form-label">Día</label>
@@ -152,7 +155,6 @@
                 <label for="email" class="form-label">Tipo</label>
                 <input type="email" class="form-control" id="email" />
               </div>
-              <!-- Agrega más campos del formulario aquí -->
             </form>
           </div>
           <div class="modal-footer">
@@ -181,32 +183,34 @@
           </svg>
         </a>
         <span class="mb-3 mb-md-0 text-body-secondary"
-          >&copy; 2024 Company, Inc</span
-        >
+          >&copy; 2024 Company, Inc
+        </span>
       </div>
 
       <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
         <li class="ms-3">
-          <a class="text-body-secondary" href="#"
-            ><svg class="bi" width="24" height="24">
-              <use xlink:href="#twitter" /></svg
-          ></a>
+          <a class="text-body-secondary" href="#">
+            <svg class="bi" width="24" height="24">
+              <use xlink:href="#twitter" />
+            </svg>
+          </a>
         </li>
         <li class="ms-3">
-          <a class="text-body-secondary" href="#"
-            ><svg class="bi" width="24" height="24">
-              <use xlink:href="#instagram" /></svg
-          ></a>
+          <a class="text-body-secondary" href="#">
+            <svg class="bi" width="24" height="24">
+              <use xlink:href="#instagram" />
+            </svg>
+          </a>
         </li>
         <li class="ms-3">
-          <a class="text-body-secondary" href="#"
-            ><svg class="bi" width="24" height="24">
-              <use xlink:href="#facebook" /></svg
-          ></a>
+          <a class="text-body-secondary" href="#">
+            <svg class="bi" width="24" height="24">
+              <use xlink:href="#facebook" />
+            </svg>
+          </a>
         </li>
       </ul>
     </footer>
-
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
       <symbol id="bootstrap" viewBox="0 0 118 94">
         <title>Bootstrap</title>
