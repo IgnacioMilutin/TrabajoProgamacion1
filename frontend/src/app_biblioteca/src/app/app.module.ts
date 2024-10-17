@@ -13,6 +13,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { PrestamosComponent } from './pages/prestamos/prestamos.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { ResenaComponent } from './pages/resena/resena.component';
+import { AbmComponent } from './components/usuarios/abm/abm.component';
+import { VerUserComponent } from './components/usuarios/ver-user/ver-user.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ResenaComponent } from './pages/resena/resena.component';
     LoginComponent,
     PrestamosComponent,
     UsuariosComponent,
-    ResenaComponent
+    ResenaComponent,
+    AbmComponent,
+    VerUserComponent
   ],
   imports: [
     BrowserModule,
