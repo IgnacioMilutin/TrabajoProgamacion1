@@ -15,6 +15,9 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { ResenaComponent } from './pages/resena/resena.component';
 import { AbmComponent } from './components/usuarios/abm/abm.component';
 import { VerUserComponent } from './components/usuarios/ver-user/ver-user.component';
+import { UsuarioComponent } from './pages/usuario/usuario.component';
+import { BarraBusquedaComponent } from './components/shared/barra-busqueda/barra-busqueda.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,13 +33,12 @@ import { VerUserComponent } from './components/usuarios/ver-user/ver-user.compon
     UsuariosComponent,
     ResenaComponent,
     AbmComponent,
-    VerUserComponent
+    VerUserComponent,
+    UsuarioComponent,
+    BarraBusquedaComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
