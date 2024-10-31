@@ -9,6 +9,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { LibrosComponent } from './pages/libros/libros.component';
 import { LibroComponent } from './pages/libro/libro.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
+import { authsessionsGuard } from './guards/authsessions.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -19,7 +20,11 @@ const routes: Routes = [
   { path: 'prestamos', component: PrestamosComponent },
   { path: 'resenas', component: ResenaComponent },
   { path: 'usuario/:id/:tipo_op', component: UsuarioComponent },
-  { path: 'usuarios', component: UsuariosComponent },
+  {
+    path: 'usuarios',
+    component: UsuariosComponent,
+    canActivate: [authsessionsGuard],
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'error_page' },
 ];

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsuariosService } from '../../../services/usuarios.service';
 
 @Component({
   selector: 'app-ver-user',
@@ -8,31 +9,42 @@ import { Router } from '@angular/router';
 })
 export class VerUserComponent {
   searchQuery = '';
-  arrayUsuarios = [
-    {
-      id: 1,
-      nombre: 'Ignacio',
-    },
-    {
-      id: 2,
-      nombre: 'Matias',
-    },
-    {
-      id: 3,
-      nombre: 'Santiago',
-    },
-    {
-      id: 4,
-      nombre: 'Gino',
-    },
-    {
-      id: 5,
-      nombre: 'Usuario 5',
-    },
-  ];
-  filteredUsers = [...this.arrayUsuarios];
+  // arrayUsuarios = [
+  //   {
+  //     id: 1,
+  //     nombre: 'Ignacio',
+  //   },
+  //   {
+  //     id: 2,
+  //     nombre: 'Matias',
+  //   },
+  //   {
+  //     id: 3,
+  //     nombre: 'Santiago',
+  //   },
+  //   {
+  //     id: 4,
+  //     nombre: 'Gino',
+  //   },
+  //   {
+  //     id: 5,
+  //     nombre: 'Usuario 5',
+  //   },
+  // ];
+  arrayUsuarios: any[] = [];
+  filteredUsers: any[] = [];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private usuariosService: UsuariosService
+  ) {}
+  ngOnInit() {
+    this.usuariosService.getUsers().subscribe((rta: any) => {
+      console.log('usuarios api: ', rta);
+      this.arrayUsuarios = rta.usuarios || [];
+      this.filteredUsers = [...this.arrayUsuarios];
+    });
+  }
   editarusuario(user: any) {
     console.log('Estoy editando', user);
     this.router.navigate(['/usuario/' + user.id + '/Editar']);
@@ -40,7 +52,7 @@ export class VerUserComponent {
   buscar() {
     console.log('buscar: ', this.searchQuery);
     this.filteredUsers = this.arrayUsuarios.filter((user) =>
-      user.nombre.includes(this.searchQuery)
+      user.nombreapellido.includes(this.searchQuery)
     );
   }
 }
