@@ -17,7 +17,11 @@ const routes: Routes = [
   { path: 'libro', component: LibroComponent },
   { path: 'libros', component: LibrosComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'prestamos', component: PrestamosComponent },
+  {
+    path: 'prestamos',
+    component: PrestamosComponent,
+    canActivate: [authsessionsGuard],
+  },
   { path: 'resenas', component: ResenaComponent },
   { path: 'usuario/:id/:tipo_op', component: UsuarioComponent },
   {
