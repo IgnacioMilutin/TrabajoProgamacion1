@@ -1,7 +1,8 @@
-<app-nav></app-nav>
-<div class="container-flex content background-image">
-  <!-- Primera fila de cards -->
-  <div class="row ms-1 me-1">
+<!-- <app-nav></app-nav>
+<div class="container-flex content background-image"> -->
+<!-- Primera fila de cards -->
+
+<!-- <div class="row ms-1 me-1">
     <div class="col-sm mt-2">
       <div class="card" style="align-items: center">
         <img src="img/harry.jpg" class="card-img-top" alt="Harry Potter" />
@@ -42,10 +43,11 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <!-- Segunda fila de cards (duplicada) -->
-  <div class="row ms-1 me-1">
+<!-- Segunda fila de cards (duplicada) -->
+
+<!-- <div class="row ms-1 me-1">
     <div class="col-sm mt-2">
       <div class="card" style="align-items: center">
         <img src="img/harry.jpg" class="card-img-top" alt="Harry Potter" />
@@ -58,7 +60,11 @@
     </div>
     <div class="col-sm mt-2">
       <div class="card" style="align-items: center">
-        <img src="img/orphanage.jpg" class="card-img-top" alt="Orphanage" />
+        <img
+          src="../../../assets/orphanage.jpg"
+          class="card-img-top"
+          alt="Orphanage"
+        />
         <div class="card-body">
           <h5 class="card-title">Book title</h5>
           <p class="card-text">Autor Genero</p>
@@ -89,4 +95,116 @@
   </div>
 </div>
 
+<app-footer></app-footer> -->
+
+<!-- <app-nav></app-nav>
+<div class="container-flex content background-image">
+  <div class="row ms-1 me-1">
+    <div class="col-sm mt-2" *ngFor="let libro of libros">
+      <div class="card" style="align-items: center">
+        <img
+          src="../../../assets/harry.jpg"
+          class="card-img-top"
+          alt="{{ libro.titulo }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ libro.titulo }}</h5>
+          <p class="card-text">
+            {{ libro.autores[0]?.nombre }} - {{ libro.genero }}
+          </p>
+          <a [routerLink]="['/libro', libro.id_libro]" class="btn btn-primary"
+            >Go into the book</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer> -->
+
+<!-- <app-nav></app-nav>
+<div class="container-flex content background-image">
+
+  <div class="row ms-1 me-1">
+    <div class="col-sm mt-2" *ngFor="let libro of libros; let i = index">
+      <div class="card" style="align-items: center">
+        <img
+          src="../../../assets/harry.jpg"
+          class="card-img-top"
+          alt="{{ libro.titulo }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ libro.titulo }}</h5>
+          <p class="card-text">
+            {{ libro.autores[0]?.nombre }} - {{ libro.genero }}
+          </p>
+          <a [routerLink]="['/libro', libro.id_libro]" class="btn btn-primary"
+            >Go into the book</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row ms-1 me-1" *ngFor="let libro of libros; let i = index">
+    <div class="col-sm mt-2">
+      <div class="card" style="align-items: center">
+        <img
+          src="../../../assets/orphanage.jpg"
+          class="card-img-top"
+          alt="{{ libro.titulo }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ libro.titulo }}</h5>
+          <p class="card-text">
+            {{ libro.autores[0]?.nombre }} - {{ libro.genero }}
+          </p>
+          <a [routerLink]="['/libro', libro.id_libro]" class="btn btn-primary"
+            >Go into the book</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer> -->
+
+<app-nav></app-nav>
+<div class="container-flex content background-image">
+  <!-- Primera fila de cards -->
+  <div class="row ms-1 me-1">
+    <div class="col-sm mt-2" *ngFor="let libro of libros; index as i">
+      <div class="card" style="align-items: center">
+        <img src="../../../assets/harry.jpg" class="card-img-top" alt="" />
+        <div class="card-body">
+          <h5 class="card-title">{{ libro.titulo }}</h5>
+          <p class="card-text">
+            {{ libro.autores[0].nombre }} - {{ libro.genero }}
+          </p>
+          <a [routerLink]="['/libro', libro.id_libro]" class="btn btn-primary"
+            >Go into the book</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Segunda fila de cards (similar a la primera, con diferentes libros) -->
+  <div class="row ms-1 me-1">
+    <div class="col-sm mt-2" *ngFor="let libro of libros; index as i">
+      <div class="card" style="align-items: center">
+        <img src="../../../assets/orphanage.jpg" class="card-img-top" alt="" />
+        <div class="card-body">
+          <h5 class="card-title">{{ libro.titulo }}</h5>
+          <p class="card-text">
+            {{ libro.autores[0].nombre }} - {{ libro.genero }}
+          </p>
+          <a [routerLink]="['/libro', libro.id_libro]" class="btn btn-primary"
+            >Go into the book</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <app-footer></app-footer>

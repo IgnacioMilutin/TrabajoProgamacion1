@@ -10,6 +10,7 @@ import { LibrosComponent } from './pages/libros/libros.component';
 import { LibroComponent } from './pages/libro/libro.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { authsessionsGuard } from './guards/authsessions.guard';
+import { SigninComponent } from './pages/signin/signin.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'libro', component: LibroComponent },
   { path: 'libros', component: LibrosComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'signin', component: SigninComponent },
   {
     path: 'prestamos',
     component: PrestamosComponent,

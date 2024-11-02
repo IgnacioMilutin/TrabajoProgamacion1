@@ -19,6 +19,7 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { BarraBusquedaComponent } from './components/shared/barra-busqueda/barra-busqueda.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SigninComponent } from './pages/signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { HttpClientModule } from '@angular/common/http';
     VerUserComponent,
     UsuarioComponent,
     BarraBusquedaComponent,
+    SigninComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from dotenv import load_dotenv
 from flask_restful import Api
 import os
@@ -16,6 +17,8 @@ mailsender=Mail()
 def create_app():
     app=Flask(__name__)
     load_dotenv()
+
+    CORS(app, resources={r"/*": {"origins": "*"}})
 
 #BASE DE DATOS
     if not os.path.exists(os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME')):
